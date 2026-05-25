@@ -42,6 +42,7 @@ export default function RootLayout({
         <meta name="apple-mobile-web-app-title" content="SiteVerify" />
       </head>
       <body className="bg-white text-gray-900 antialiased">
+
         <header className="border-b border-gray-100 bg-white sticky top-0 z-50">
           <div className="max-w-5xl mx-auto px-4 py-4 flex items-center justify-between">
             <a href="/" className="flex items-center gap-2">
@@ -54,21 +55,33 @@ export default function RootLayout({
               <a href="/check" className="hover:text-green-600 transition-colors">Check Site</a>
               <a href="/blog" className="hover:text-green-600 transition-colors">Blog</a>
               <a href="/report" className="hover:text-green-600 transition-colors">Report Scam</a>
+              <a href="/about" className="hover:text-green-600 transition-colors">About</a>
+              <a href="/contact" className="hover:text-green-600 transition-colors">Contact</a>
             </nav>
           </div>
         </header>
+
         <main>{children}</main>
+
         <footer className="border-t border-gray-100 mt-20">
           <div className="max-w-5xl mx-auto px-4 py-10 text-center text-sm text-gray-400">
             <p className="mb-2">🛡️ <strong className="text-gray-600">SiteVerify</strong> — Nigeria's trusted scam detection platform</p>
             <p>Powered by AI · Not legal or financial advice · Always verify independently</p>
-            <div className="flex justify-center gap-6 mt-4 text-gray-400">
-              <a href="/blog" className="hover:text-green-600">Blog</a>
+            <div className="flex justify-center gap-6 mt-4 flex-wrap text-gray-400">
               <a href="/check" className="hover:text-green-600">Check a Site</a>
+              <a href="/blog" className="hover:text-green-600">Blog</a>
               <a href="/report" className="hover:text-green-600">Report a Scam</a>
+              <a href="/about" className="hover:text-green-600">About</a>
+              <a href="/contact" className="hover:text-green-600">Contact</a>
+              <a href="/privacy" className="hover:text-green-600">Privacy Policy</a>
+              <a href="/terms" className="hover:text-green-600">Terms of Service</a>
             </div>
+            <p className="mt-6 text-xs text-gray-300">
+              A product of Fix9ja Technologies LTD · Registered with the Corporate Affairs Commission · Abuja, Nigeria
+            </p>
           </div>
         </footer>
+
       </body>
     </html>
   )

@@ -1,5 +1,4 @@
 'use client'
-
 import { useState } from 'react'
 import type { Metadata } from 'next'
 
@@ -22,6 +21,10 @@ export default function ContactPage() {
 
   return (
     <div className="max-w-2xl mx-auto px-4 py-12">
+      
+      <button onClick={() => window.history.back()} className="inline-flex items-center gap-2 text-sm text-gray-500 hover:text-green-600 mb-6 transition-colors">
+  ← Back
+</button>
 
       <div className="mb-10">
         <h1 className="text-4xl font-extrabold text-gray-900 mb-3">Contact Us</h1>

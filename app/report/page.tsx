@@ -1,3 +1,4 @@
+'use client'
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
@@ -8,6 +9,10 @@ export const metadata: Metadata = {
 export default function ReportPage() {
   return (
     <div className="max-w-2xl mx-auto px-4 py-12">
+      
+      <button onClick={() => window.history.back()} className="inline-flex items-center gap-2 text-sm text-gray-500 hover:text-green-600 mb-6 transition-colors">
+  ← Back
+</button>
       <div className="mb-8">
         <h1 className="text-3xl font-extrabold text-gray-900 mb-3">Report a Scam</h1>
         <p className="text-gray-500">Help protect other Nigerians. Report a fake website, investment platform, or fraudulent app.</p>

@@ -1,6 +1,14 @@
+"use client";
+
 import BackButton from '@/components/BackButton'
 import { useState } from 'react'
 import type { Metadata } from 'next'
+
+// Next.js will ignore this on the client side, but handles it perfectly for the build
+export const metadata: Metadata = {
+  title: 'Contact Us | SiteVerify Nigeria',
+  description: 'Get in touch with the SiteVerify team. Reach out via email or WhatsApp to report scams or make inquiries.',
+}
 
 export default function ContactPage() {
   const [name, setName] = useState('')

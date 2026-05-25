@@ -1,7 +1,7 @@
 import BackButton from '@/components/BackButton'
 import type { Metadata } from 'next'
 
-export const metadata = {
+export const metadata: Metadata = {
   title: 'Privacy Policy | SiteVerify',
   description: 'Privacy Policy for SiteVerify — a product of Fix9ja Technologies LTD. Learn how we handle your data.',
 }

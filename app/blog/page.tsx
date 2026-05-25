@@ -1,7 +1,7 @@
 import BackButton from '@/components/BackButton'
 import type { Metadata } from 'next'
 
-export const metadata = {
+export const metadata: Metadata = {
   title: 'Scam Alerts & Online Safety Blog | SiteVerify Nigeria',
   description: 'Latest scam alerts, fake investment site exposés, and online safety tips for Nigerians. Stay protected with SiteVerify.',
 }

@@ -2,7 +2,7 @@ import BackButton from '@/components/BackButton'
 import type { Metadata } from 'next'
 import CheckerSection from '@/components/CheckerSection'
 
-export const metadata: Metadata = {
+export const metadata = {
   title: 'Check If a Website is Safe | SiteVerify Scam Detector',
   description: 'Free AI-powered website safety checker. Paste any URL and instantly find out if it is safe, suspicious, or a scam. Trusted in Nigeria.',
 }

@@ -1,7 +1,7 @@
 import BackButton from '@/components/BackButton'
 import type { Metadata } from 'next'
 
-export const metadata: Metadata = {
+export const metadata = {
   title: 'About Us | SiteVerify — Nigeria Scam Detection Platform',
   description: 'SiteVerify is built by Fix9ja Technologies LTD to help Nigerians and people across Africa verify websites and avoid online scams.',
 }

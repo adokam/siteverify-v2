@@ -20,18 +20,11 @@ export const metadata: Metadata = {
   robots: {
     index: true,
     follow: true,
-    googleBot: {
-      index: true,
-      follow: true,
-    },
+    googleBot: { index: true, follow: true },
   },
 }
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode
-}) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
       <head>
@@ -50,6 +43,7 @@ export default function RootLayout({
             <p className="mb-2">🛡️ <strong className="text-gray-600">SiteVerify</strong> — Nigeria's trusted scam detection platform</p>
             <p>Powered by AI · Not legal or financial advice · Always verify independently</p>
             <div className="flex flex-wrap justify-center gap-4 mt-4 text-gray-400">
+              <a href="/" className="hover:text-green-600">Home</a>
               <a href="/blog" className="hover:text-green-600">Blog</a>
               <a href="/check" className="hover:text-green-600">Check a Site</a>
               <a href="/report" className="hover:text-green-600">Report a Scam</a>

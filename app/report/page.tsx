@@ -1,5 +1,5 @@
-import BackButton from '@/components/BackButton'
 import type { Metadata } from 'next'
+import BackButton from '@/components/BackButton'
 
 export const metadata: Metadata = {
   title: 'Report a Scam Website | SiteVerify Nigeria',
@@ -9,14 +9,11 @@ export const metadata: Metadata = {
 export default function ReportPage() {
   return (
     <div className="max-w-2xl mx-auto px-4 py-12">
-      
       <BackButton />
-      
       <div className="mb-8">
         <h1 className="text-3xl font-extrabold text-gray-900 mb-3">Report a Scam</h1>
         <p className="text-gray-500">Help protect other Nigerians. Report a fake website, investment platform, or fraudulent app.</p>
       </div>
-
       <div className="bg-white rounded-2xl border border-gray-100 p-6 shadow-sm">
         <div className="space-y-5">
           <div>

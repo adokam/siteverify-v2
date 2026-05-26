@@ -9,13 +9,6 @@ module.exports = {
       fontFamily: {
         sans: ['Inter', 'system-ui', 'sans-serif'],
       },
-      colors: {
-        brand: {
-          green: '#16a34a',
-          red: '#dc2626',
-          yellow: '#ca8a04',
-        }
-      }
     },
   },
   plugins: [],

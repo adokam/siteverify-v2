@@ -4,9 +4,7 @@ import CheckerSection from '@/components/CheckerSection'
 export const metadata: Metadata = {
   title: 'SiteVerify — Is This Website Safe? Free Scam Checker Nigeria',
   description: 'Instantly check if any website, investment platform, app, or online business is safe or a scam. AI-powered. Free. Trusted in Nigeria.',
-  alternates: {
-    canonical: 'https://siteverify.vercel.app',
-  },
+  alternates: { canonical: 'https://siteverify-v2.vercel.app' },
 }
 
 export default function HomePage() {
@@ -16,25 +14,18 @@ export default function HomePage() {
       {/* Hero */}
       <section className="bg-white pt-16 pb-12 px-4 text-center">
         <div className="max-w-3xl mx-auto">
-          <div className="inline-flex items-center gap-2 bg-green-50 text-green-700 text-xs font-semibold px-3 py-1.5 rounded-full mb-6 border border-green-100">
-            🇳🇬 Built for Nigeria · Trusted Everywhere
-          </div>
           <h1 className="text-4xl md:text-6xl font-extrabold text-gray-900 leading-tight tracking-tight mb-4">
             Is This Website <span className="text-green-600">Safe?</span>
           </h1>
           <p className="text-lg text-gray-500 max-w-xl mx-auto mb-10 leading-relaxed">
-            Paste any URL, investment platform, or app name. Our AI scans the web and tells you instantly if it's legitimate or a scam.
+            Paste any URL, investment platform, or app name. Our AI scans the web and tells you instantly if it is legitimate or a scam.
           </p>
-
-          {/* Checker */}
           <CheckerSection />
-
-          {/* Trust signals */}
           <div className="flex flex-wrap justify-center gap-4 mt-8 text-sm text-gray-400">
-            <span className="flex items-center gap-1.5">✅ Live web scanning</span>
-            <span className="flex items-center gap-1.5">✅ Forensic analysis</span>
-            <span className="flex items-center gap-1.5">✅ Google Safe Browsing</span>
-            <span className="flex items-center gap-1.5">✅ Free forever</span>
+            <span>✅ Live web scanning</span>
+            <span>✅ Forensic analysis</span>
+            <span>✅ Google Safe Browsing</span>
+            <span>✅ Free forever</span>
           </div>
         </div>
       </section>
@@ -47,7 +38,7 @@ export default function HomePage() {
             {[
               { step: '01', icon: '🔗', title: 'Paste any link', desc: 'Enter any URL, app name, or describe the platform you want to check.' },
               { step: '02', icon: '🤖', title: 'AI scans the web', desc: 'Our AI searches for scam reports, domain info, and red flags in seconds.' },
-              { step: '03', icon: '🛡️', title: 'Get your verdict', desc: 'Receive a clear SAFE, WARNING, or DANGER verdict with full explanation.' },
+              { step: '03', icon: '🛡️', title: 'Get your verdict', desc: 'Receive a clear SAFE, WARNING, or DANGER verdict with a full explanation.' },
             ].map((item) => (
               <div key={item.step} className="bg-white rounded-xl p-6 border border-gray-100 shadow-sm">
                 <div className="text-xs font-bold text-green-600 mb-3">{item.step}</div>
@@ -60,7 +51,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Scam categories */}
+      {/* What we detect */}
       <section className="py-16 px-4 bg-white">
         <div className="max-w-4xl mx-auto">
           <h2 className="text-2xl font-bold text-center text-gray-900 mb-3">What We Detect</h2>
@@ -93,9 +84,9 @@ export default function HomePage() {
           </div>
           <div className="grid md:grid-cols-3 gap-4">
             {[
-              { tag: 'Investment', title: 'PXES Nigeria — Fake Investment Platform Exposed', date: 'May 2026', danger: true },
-              { tag: 'Data Harvest', title: 'BunnyBand — Never Pays, Steals Your Data', date: 'May 2026', danger: true },
-              { tag: 'Ponzi', title: 'VictusLink — Classic Ponzi Scheme Warning', date: 'May 2026', danger: true },
+              { tag: 'Investment', title: 'PXES Nigeria — Fake Investment Platform Exposed', date: 'May 2026' },
+              { tag: 'Data Harvest', title: 'BunnyBand — Never Pays, Steals Your Data', date: 'May 2026' },
+              { tag: 'Ponzi', title: 'VictusLink — Classic Ponzi Scheme Warning', date: 'May 2026' },
             ].map((alert) => (
               <div key={alert.title} className="bg-white rounded-xl p-5 border border-red-100 shadow-sm">
                 <div className="flex items-center gap-2 mb-3">

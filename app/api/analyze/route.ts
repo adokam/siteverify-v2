@@ -3,12 +3,10 @@ import { NextRequest, NextResponse } from 'next/server'
 export async function POST(req: NextRequest) {
   try {
     const { input, mode } = await req.json()
-
     if (!input || typeof input !== 'string' || input.length > 500) {
       return NextResponse.json({ error: 'Invalid input' }, { status: 400 })
     }
 
-    // Google Safe Browsing check
     let gsbResult = null
     const urlMatch = input.match(/https?:\/\/[^\s]+|(?:www\.)?[a-zA-Z0-9-]+\.[a-zA-Z]{2,}(?:\/[^\s]*)?/)
     if (urlMatch && process.env.GOOGLE_SAFE_BROWSING_API_KEY) {
@@ -34,16 +32,14 @@ export async function POST(req: NextRequest) {
         const gsbData = await gsbRes.json()
         const matches = gsbData.matches || []
         gsbResult = { flagged: matches.length > 0, threats: matches.map((m: any) => m.threatType), url: targetUrl }
-      } catch (e) {
-        console.error('GSB error:', e)
-      }
+      } catch (e) { console.error('GSB error:', e) }
     }
 
     const modeContext: Record<string, string> = {
       quick: 'Standard safety check — fast but thorough.',
       deep: 'Deep forensic analysis. Be very detailed in every field.',
-      investment: `INVESTMENT FRAUD check with Nigerian scam intelligence. Watch for: Ponzi schemes, fake ROI, unregistered investment platforms, VIP membership traps, fake crypto sites, unrealistic daily/weekly returns. Check SEC Nigeria registration.`,
-      clone: `CLONE SITE detection. Check if this site impersonates a legitimate brand. Look for typosquatting, domain tricks, fake logos.`
+      investment: 'INVESTMENT FRAUD check with Nigerian scam intelligence. Watch for Ponzi schemes, fake ROI, unregistered platforms, VIP membership traps, fake crypto sites, unrealistic daily returns. Check SEC Nigeria registration.',
+      clone: 'CLONE SITE detection. Check if this site impersonates a legitimate brand. Look for typosquatting and domain tricks.'
     }
 
     const systemPrompt = `You are SiteVerify AI, a professional cybersecurity and fraud analyst specializing in Nigerian internet fraud and global scam detection.

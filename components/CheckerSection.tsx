@@ -1,6 +1,17 @@
 'use client'
 
 import { useState } from 'react'
+import {
+  BoltIcon,
+  BeakerIcon,
+  BanknotesIcon,
+  UserGroupIcon,
+  ShieldCheckIcon,
+  ExclamationTriangleIcon,
+  XCircleIcon,
+  ShareIcon,
+  ArrowLeftIcon,
+} from '@heroicons/react/24/outline'
 
 type ScanMode = 'quick' | 'deep' | 'investment' | 'clone'
 
@@ -20,11 +31,11 @@ interface AnalysisResult {
   recommendation: string
 }
 
-const MODES: { id: ScanMode; icon: string; label: string }[] = [
-  { id: 'quick', icon: '⚡', label: 'Quick Scan' },
-  { id: 'deep', icon: '🔬', label: 'Deep Scan' },
-  { id: 'investment', icon: '💰', label: 'Investment Check' },
-  { id: 'clone', icon: '👥', label: 'Clone Detector' },
+const MODES = [
+  { id: 'quick' as ScanMode, icon: <BoltIcon className="w-4 h-4" />, label: 'Quick Scan' },
+  { id: 'deep' as ScanMode, icon: <BeakerIcon className="w-4 h-4" />, label: 'Deep Scan' },
+  { id: 'investment' as ScanMode, icon: <BanknotesIcon className="w-4 h-4" />, label: 'Investment Check' },
+  { id: 'clone' as ScanMode, icon: <UserGroupIcon className="w-4 h-4" />, label: 'Clone Detector' },
 ]
 
 const EXAMPLES = ['victuslink.top', 'pxesng.com', 'binance.com', 'payfastearn.com']
@@ -43,9 +54,24 @@ export default function CheckerSection() {
   const riskColor = (v: number) => v >= 70 ? 'text-red-600' : v >= 40 ? 'text-yellow-600' : 'text-green-600'
 
   const verdictStyles = {
-    SAFE: { bg: 'bg-green-50 border-green-200', icon: '✅', label: 'text-green-700', action: 'Safe to Proceed' },
-    WARNING: { bg: 'bg-yellow-50 border-yellow-200', icon: '⚠️', label: 'text-yellow-700', action: 'Proceed With Caution' },
-    DANGER: { bg: 'bg-red-50 border-red-200', icon: '❌', label: 'text-red-700', action: 'Avoid Completely' },
+    SAFE: {
+      bg: 'bg-green-50 border-green-200',
+      icon: <ShieldCheckIcon className="w-10 h-10 text-green-600" />,
+      label: 'text-green-700',
+      action: 'Safe to Proceed',
+    },
+    WARNING: {
+      bg: 'bg-yellow-50 border-yellow-200',
+      icon: <ExclamationTriangleIcon className="w-10 h-10 text-yellow-600" />,
+      label: 'text-yellow-700',
+      action: 'Proceed With Caution',
+    },
+    DANGER: {
+      bg: 'bg-red-50 border-red-200',
+      icon: <XCircleIcon className="w-10 h-10 text-red-600" />,
+      label: 'text-red-700',
+      action: 'Avoid Completely',
+    },
   }
 
   async function scan() {
@@ -82,35 +108,40 @@ export default function CheckerSection() {
   return (
     <div className="w-full max-w-2xl mx-auto text-left">
 
-      {/* Scanner box */}
       <div className="bg-gray-950 rounded-2xl p-6 border border-gray-800 shadow-2xl">
         <div className="flex items-center gap-2 mb-4">
           <div className="w-2 h-2 rounded-full bg-green-400 animate-pulse"></div>
           <span className="text-green-400 text-xs font-mono uppercase tracking-widest">Scanner Ready</span>
         </div>
+
         <textarea
           value={input}
           onChange={e => setInput(e.target.value)}
           onKeyDown={e => { if (e.key === 'Enter' && (e.ctrlKey || e.metaKey)) scan() }}
-          placeholder="Paste URL or describe the site... e.g. victuslink.top"
+          placeholder="Paste a URL or describe the site... e.g. victuslink.top"
           rows={3}
           className="w-full bg-gray-900 border border-gray-700 rounded-xl px-4 py-3 text-white placeholder-gray-500 font-mono text-sm focus:outline-none focus:border-green-500 transition-colors resize-none mb-4"
         />
+
         <div className="grid grid-cols-2 md:grid-cols-4 gap-2 mb-4">
           {MODES.map(m => (
             <button key={m.id} onClick={() => setMode(m.id)}
-              className={`flex flex-col items-center gap-1 py-2 px-3 rounded-lg border text-xs font-medium transition-all ${mode === m.id ? 'border-green-500 bg-green-500/10 text-green-400' : 'border-gray-700 text-gray-400 hover:border-gray-500'}`}>
-              <span className="text-base">{m.icon}</span>
+              className={`flex flex-col items-center gap-1.5 py-2.5 px-3 rounded-lg border text-xs font-medium transition-all ${mode === m.id ? 'border-green-500 bg-green-500/10 text-green-400' : 'border-gray-700 text-gray-400 hover:border-gray-500'}`}>
+              {m.icon}
               <span>{m.label}</span>
             </button>
           ))}
         </div>
+
         <button onClick={scan} disabled={loading}
           className="w-full bg-green-500 hover:bg-green-400 disabled:opacity-50 disabled:cursor-not-allowed text-white font-bold py-3.5 rounded-xl transition-colors text-sm flex items-center justify-center gap-2">
           {loading ? (
-            <><svg className="animate-spin h-4 w-4" viewBox="0 0 24 24" fill="none"><circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"/><path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8z"/></svg>Scanning...</>
-          ) : '🛡️  Scan Now'}
+            <><svg className="animate-spin h-4 w-4" viewBox="0 0 24 24" fill="none"><circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" /><path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8z" /></svg>Scanning...</>
+          ) : (
+            <><ShieldCheckIcon className="w-4 h-4" />Scan Now</>
+          )}
         </button>
+
         <div className="mt-4 flex flex-wrap gap-2 items-center">
           <span className="text-gray-500 text-xs font-mono">Try:</span>
           {EXAMPLES.map(ex => (
@@ -123,15 +154,22 @@ export default function CheckerSection() {
       </div>
 
       {error && (
-        <div className="mt-4 bg-red-50 border border-red-200 rounded-xl px-4 py-3 text-sm text-red-600">
-          ⚠️ {error}
+        <div className="mt-4 bg-red-50 border border-red-200 rounded-xl px-4 py-3 text-sm text-red-600 flex items-center gap-2">
+          <ExclamationTriangleIcon className="w-4 h-4 flex-shrink-0" />
+          {error}
         </div>
       )}
 
       {loading && (
         <div className="mt-6 bg-gray-50 rounded-xl p-6 border border-gray-100">
           <div className="space-y-3">
-            {['Fetching site data from the web...','Checking domain age & registration...','Running forensic scam pattern analysis...','Checking Google Safe Browsing...','Generating verdict & risk score...'].map((step, i) => (
+            {[
+              'Fetching site data from the web',
+              'Checking domain age and registration',
+              'Running forensic scam pattern analysis',
+              'Checking Google Safe Browsing',
+              'Generating verdict and risk score',
+            ].map((step, i) => (
               <div key={i} className="flex items-center gap-3 text-sm text-gray-500">
                 <div className="w-4 h-4 rounded-full border-2 border-green-400 border-t-transparent animate-spin flex-shrink-0" style={{ animationDelay: `${i * 0.2}s` }}></div>
                 {step}
@@ -145,7 +183,7 @@ export default function CheckerSection() {
         <div className="mt-6 space-y-4">
 
           <div className={`rounded-2xl p-5 border ${vs.bg} flex items-start gap-4`}>
-            <span className="text-4xl flex-shrink-0">{vs.icon}</span>
+            <div className="flex-shrink-0">{vs.icon}</div>
             <div>
               <div className={`text-xs font-bold uppercase tracking-widest mb-1 ${vs.label}`}>{vs.action}</div>
               <div className="text-xl font-extrabold text-gray-900">{result.verdict_label}</div>
@@ -156,7 +194,7 @@ export default function CheckerSection() {
           {result.forensic && (
             <div className="bg-white rounded-2xl border border-gray-100 p-5 shadow-sm">
               <div className="flex items-center justify-between mb-4">
-                <span className="text-xs font-bold uppercase tracking-widest text-gray-400">🔬 Forensic Risk Score</span>
+                <span className="text-xs font-bold uppercase tracking-widest text-gray-400">Forensic Risk Score</span>
                 <span className={`text-4xl font-extrabold ${riskColor(result.risk_score)}`}>
                   {result.risk_score}<span className="text-lg text-gray-300">/100</span>
                 </span>
@@ -164,7 +202,7 @@ export default function CheckerSection() {
               <div className="space-y-2">
                 {result.forensic.flags.map((f, i) => (
                   <div key={i} className="flex items-center gap-3 text-sm py-2 px-3 rounded-lg bg-gray-50 border border-gray-100">
-                    <span>{f.icon}</span>
+                    <span className="text-base">{f.icon}</span>
                     <span className="flex-1 text-gray-700">{f.label}</span>
                     <span className={`text-xs font-mono font-bold px-2 py-0.5 rounded border ${f.status === 'bad' ? 'bg-red-50 text-red-600 border-red-200' : f.status === 'good' ? 'bg-green-50 text-green-600 border-green-200' : 'bg-yellow-50 text-yellow-600 border-yellow-200'}`}>
                       {f.value}
@@ -195,7 +233,7 @@ export default function CheckerSection() {
               <div className="space-y-2">
                 {result.why_flagged.map((r, i) => (
                   <div key={i} className="flex items-start gap-2 text-sm text-gray-600">
-                    <span className="text-red-500 flex-shrink-0 mt-0.5">🚩</span>
+                    <ExclamationTriangleIcon className="w-4 h-4 text-red-500 flex-shrink-0 mt-0.5" />
                     <span>{r}</span>
                   </div>
                 ))}
@@ -222,15 +260,16 @@ export default function CheckerSection() {
 
           {result.agenda && (
             <div className="bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden">
-              <button onClick={() => setAgendaOpen(!agendaOpen)} className="w-full flex items-center justify-between p-5 hover:bg-gray-50 transition-colors">
+              <button onClick={() => setAgendaOpen(!agendaOpen)}
+                className="w-full flex items-center justify-between p-5 hover:bg-gray-50 transition-colors">
                 <div className="flex items-center gap-3">
                   <div className="w-2 h-2 rounded-full bg-yellow-400 animate-pulse"></div>
                   <div className="text-left">
-                    <div className="font-bold text-sm text-gray-900">👁️ What does this site really want?</div>
+                    <div className="font-bold text-sm text-gray-900">What does this site really want?</div>
                     <div className="text-xs text-gray-500 mt-0.5">{result.agenda.summary}</div>
                   </div>
                 </div>
-                <span className={`text-gray-400 transition-transform ${agendaOpen ? 'rotate-180' : ''}`}>▼</span>
+                <span className={`text-gray-400 text-xs transition-transform ${agendaOpen ? 'rotate-180' : ''}`}>▼</span>
               </button>
               {agendaOpen && (
                 <div className="px-5 pb-5 border-t border-gray-50 space-y-4 pt-4">
@@ -257,11 +296,15 @@ export default function CheckerSection() {
           </div>
 
           <div className="flex gap-3 flex-wrap">
-            <button onClick={shareResult} className="flex items-center gap-2 bg-green-600 text-white text-sm font-bold px-5 py-2.5 rounded-xl hover:bg-green-700 transition-colors">
-              📤 {copied ? 'Copied!' : 'Share Result'}
+            <button onClick={shareResult}
+              className="flex items-center gap-2 bg-green-600 text-white text-sm font-bold px-5 py-2.5 rounded-xl hover:bg-green-700 transition-colors">
+              <ShareIcon className="w-4 h-4" />
+              {copied ? 'Copied!' : 'Share Result'}
             </button>
-            <button onClick={() => { setResult(null); setInput(''); setError('') }} className="flex items-center gap-2 bg-white border border-gray-200 text-gray-700 text-sm font-semibold px-5 py-2.5 rounded-xl hover:border-gray-300 transition-colors">
-              ← New Scan
+            <button onClick={() => { setResult(null); setInput(''); setError('') }}
+              className="flex items-center gap-2 bg-white border border-gray-200 text-gray-700 text-sm font-semibold px-5 py-2.5 rounded-xl hover:border-gray-300 transition-colors">
+              <ArrowLeftIcon className="w-4 h-4" />
+              New Scan
             </button>
           </div>
 

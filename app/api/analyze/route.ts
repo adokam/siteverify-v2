@@ -36,10 +36,10 @@ export async function POST(req: NextRequest) {
     }
 
     const modeContext: Record<string, string> = {
-      quick: 'Standard safety check — fast but thorough.',
+      quick: 'Standard safety check. Fast but thorough.',
       deep: 'Deep forensic analysis. Be very detailed in every field.',
-      investment: 'INVESTMENT FRAUD check with Nigerian scam intelligence. Watch for Ponzi schemes, fake ROI, unregistered platforms, VIP membership traps, fake crypto sites, unrealistic daily returns. Check SEC Nigeria registration.',
-      clone: 'CLONE SITE detection. Check if this site impersonates a legitimate brand. Look for typosquatting and domain tricks.'
+      investment: 'Investment fraud check with Nigerian scam intelligence. Watch for Ponzi schemes, fake ROI, unregistered platforms, VIP membership traps, fake crypto sites, unrealistic daily returns. Check SEC Nigeria registration.',
+      clone: 'Clone site detection. Check if this site impersonates a legitimate brand. Look for typosquatting and domain tricks.'
     }
 
     const systemPrompt = `You are SiteVerify AI, a professional cybersecurity and fraud analyst specializing in Nigerian internet fraud and global scam detection.
@@ -53,15 +53,15 @@ Return ONLY valid JSON. No markdown. No text outside JSON.
 {
   "verdict": "SAFE" | "WARNING" | "DANGER",
   "verdict_label": "Short phrase",
-  "summary": "2-3 sentence plain English summary",
+  "summary": "2 to 3 sentence plain English summary",
   "risk_score": 0-100,
   "forensic": {
     "flags": [
       { "icon": "emoji", "label": "Domain Age", "value": "e.g. 12 days", "status": "bad" | "warn" | "good" },
-      { "icon": "emoji", "label": "SSL Certificate", "value": "Present/Missing", "status": "good" | "bad" },
-      { "icon": "emoji", "label": "Domain Ownership", "value": "Anonymous/Public", "status": "bad" | "good" },
-      { "icon": "emoji", "label": "Blacklist Status", "value": "Clean/Flagged", "status": "good" | "bad" },
-      { "icon": "emoji", "label": "Scam Reports", "value": "None/Multiple found", "status": "good" | "bad" }
+      { "icon": "emoji", "label": "SSL Certificate", "value": "Present or Missing", "status": "good" | "bad" },
+      { "icon": "emoji", "label": "Domain Ownership", "value": "Anonymous or Public", "status": "bad" | "good" },
+      { "icon": "emoji", "label": "Blacklist Status", "value": "Clean or Flagged", "status": "good" | "bad" },
+      { "icon": "emoji", "label": "Scam Reports", "value": "None found or Multiple found", "status": "good" | "bad" }
     ]
   },
   "scores": [
@@ -72,18 +72,18 @@ Return ONLY valid JSON. No markdown. No text outside JSON.
   ],
   "why_flagged": ["reason 1", "reason 2", "reason 3"],
   "findings": [
-    { "icon": "emoji", "title": "Finding", "detail": "Explanation" }
+    { "icon": "emoji", "title": "Finding title", "detail": "Explanation" }
   ],
   "agenda": {
-    "summary": "One sentence: what this site is really after",
+    "summary": "One sentence describing what this site is really after",
     "motives": [
-      { "icon": "emoji", "title": "Motive", "description": "Plain explanation", "level": "high" | "medium" | "low" }
+      { "icon": "emoji", "title": "Motive name", "description": "Plain explanation", "level": "high" | "medium" | "low" }
     ]
   },
   "recommendation": "Clear direct advice. Be specific."
 }
 
-Notes: risk_score 0=safe 100=danger. Red Flags score 100=no flags 0=extreme flags. why_flagged only for WARNING/DANGER.`
+Notes: risk_score 0 means safe, 100 means extreme danger. Red Flags score of 100 means no flags found, 0 means extreme flags. Only include why_flagged for WARNING or DANGER verdicts. Do not use em dashes anywhere in your response. Write naturally without hyphens connecting clauses.`
 
     const claudeRes = await fetch('https://api.anthropic.com/v1/messages', {
       method: 'POST',

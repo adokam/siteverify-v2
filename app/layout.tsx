@@ -22,16 +22,21 @@ export const metadata: Metadata = {
     follow: true,
     googleBot: { index: true, follow: true },
   },
+  icons: {
+    icon: '/favicon.svg',
+    apple: '/favicon.svg',
+  },
 }
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
       <head>
+        <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
-        <meta name="theme-color" content="#ffffff" />
+        <meta name="theme-color" content="#16a34a" />
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-title" content="SiteVerify" />
       </head>
@@ -40,8 +45,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <main>{children}</main>
         <footer className="border-t border-gray-100 mt-20">
           <div className="max-w-5xl mx-auto px-4 py-10 text-center text-sm text-gray-400">
-            <p className="mb-2">🛡️ <strong className="text-gray-600">SiteVerify</strong> — Nigeria's trusted scam detection platform</p>
-            <p>Powered by AI · Not legal or financial advice · Always verify independently</p>
+            <p className="mb-2">
+              <strong className="text-gray-600">SiteVerify</strong> — Nigeria's trusted scam detection platform
+            </p>
+            <p>Powered by AI. Not legal or financial advice. Always verify independently.</p>
             <div className="flex flex-wrap justify-center gap-4 mt-4 text-gray-400">
               <a href="/" className="hover:text-green-600">Home</a>
               <a href="/blog" className="hover:text-green-600">Blog</a>

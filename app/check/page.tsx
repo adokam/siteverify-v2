@@ -13,7 +13,9 @@ export default function CheckPage() {
       <BackButton />
       <div className="text-center mb-10">
         <h1 className="text-3xl font-extrabold text-gray-900 mb-3">Check Any Website for Safety</h1>
-        <p className="text-gray-500 max-w-xl mx-auto">Paste any URL, investment platform name, or describe the site. Our AI will scan it and tell you if it is safe, suspicious, or a scam.</p>
+        <p className="text-gray-500 max-w-xl mx-auto">
+          Paste any URL, investment platform name, or describe the site. Our AI will scan it and tell you if it is safe, suspicious, or a scam.
+        </p>
       </div>
       <CheckerSection />
     </div>

@@ -1,5 +1,16 @@
 import type { Metadata } from 'next'
 import CheckerSection from '@/components/CheckerSection'
+import {
+  LinkIcon,
+  MagnifyingGlassIcon,
+  ShieldCheckIcon,
+  BanknotesIcon,
+  DevicePhoneMobileIcon,
+  BuildingLibraryIcon,
+  TicketIcon,
+  ShoppingBagIcon,
+  CurrencyDollarIcon,
+} from '@heroicons/react/24/outline'
 
 export const metadata: Metadata = {
   title: 'SiteVerify — Is This Website Safe? Free Scam Checker Nigeria',
@@ -11,7 +22,6 @@ export default function HomePage() {
   return (
     <div>
 
-      {/* Hero */}
       <section className="bg-white pt-16 pb-12 px-4 text-center">
         <div className="max-w-3xl mx-auto">
           <h1 className="text-4xl md:text-6xl font-extrabold text-gray-900 leading-tight tracking-tight mb-4">
@@ -22,27 +32,26 @@ export default function HomePage() {
           </p>
           <CheckerSection />
           <div className="flex flex-wrap justify-center gap-4 mt-8 text-sm text-gray-400">
-            <span>✅ Live web scanning</span>
-            <span>✅ Forensic analysis</span>
-            <span>✅ Google Safe Browsing</span>
-            <span>✅ Free forever</span>
+            <span className="flex items-center gap-1.5"><ShieldCheckIcon className="w-4 h-4 text-green-500" />Live web scanning</span>
+            <span className="flex items-center gap-1.5"><ShieldCheckIcon className="w-4 h-4 text-green-500" />Forensic analysis</span>
+            <span className="flex items-center gap-1.5"><ShieldCheckIcon className="w-4 h-4 text-green-500" />Google Safe Browsing</span>
+            <span className="flex items-center gap-1.5"><ShieldCheckIcon className="w-4 h-4 text-green-500" />Free forever</span>
           </div>
         </div>
       </section>
 
-      {/* How it works */}
       <section className="bg-gray-50 py-16 px-4">
         <div className="max-w-4xl mx-auto">
           <h2 className="text-2xl font-bold text-center text-gray-900 mb-10">How SiteVerify Works</h2>
           <div className="grid md:grid-cols-3 gap-6">
             {[
-              { step: '01', icon: '🔗', title: 'Paste any link', desc: 'Enter any URL, app name, or describe the platform you want to check.' },
-              { step: '02', icon: '🤖', title: 'AI scans the web', desc: 'Our AI searches for scam reports, domain info, and red flags in seconds.' },
-              { step: '03', icon: '🛡️', title: 'Get your verdict', desc: 'Receive a clear SAFE, WARNING, or DANGER verdict with a full explanation.' },
+              { step: '01', icon: <LinkIcon className="w-6 h-6 text-green-600" />, title: 'Paste any link', desc: 'Enter any URL, app name, or describe the platform you want to check.' },
+              { step: '02', icon: <MagnifyingGlassIcon className="w-6 h-6 text-green-600" />, title: 'AI scans the web', desc: 'Our AI searches for scam reports, domain info, and red flags in seconds.' },
+              { step: '03', icon: <ShieldCheckIcon className="w-6 h-6 text-green-600" />, title: 'Get your verdict', desc: 'Receive a clear Safe, Warning, or Danger verdict with a full explanation.' },
             ].map((item) => (
               <div key={item.step} className="bg-white rounded-xl p-6 border border-gray-100 shadow-sm">
                 <div className="text-xs font-bold text-green-600 mb-3">{item.step}</div>
-                <div className="text-2xl mb-3">{item.icon}</div>
+                <div className="mb-3">{item.icon}</div>
                 <h3 className="font-bold text-gray-900 mb-2">{item.title}</h3>
                 <p className="text-sm text-gray-500 leading-relaxed">{item.desc}</p>
               </div>
@@ -51,22 +60,21 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* What we detect */}
       <section className="py-16 px-4 bg-white">
         <div className="max-w-4xl mx-auto">
           <h2 className="text-2xl font-bold text-center text-gray-900 mb-3">What We Detect</h2>
           <p className="text-center text-gray-500 mb-10 text-sm">SiteVerify is trained on Nigerian scam patterns and global fraud databases</p>
           <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
             {[
-              { icon: '💰', label: 'Fake Investment Sites', desc: 'Ponzi schemes, fake ROI platforms' },
-              { icon: '📱', label: 'Fake Loan Apps', desc: 'Apps that steal your contacts and data' },
-              { icon: '🏦', label: 'Banking Scams', desc: 'Phishing and fake bank portals' },
-              { icon: '🎰', label: 'Betting Scams', desc: 'Fake betting mirrors and tipsters' },
-              { icon: '🛍️', label: 'Fake Online Stores', desc: 'Sites that take your money and vanish' },
-              { icon: '💎', label: 'Crypto Fraud', desc: 'Fake exchanges and wallet drainers' },
+              { icon: <BanknotesIcon className="w-6 h-6 text-green-600" />, label: 'Fake Investment Sites', desc: 'Ponzi schemes and fake ROI platforms' },
+              { icon: <DevicePhoneMobileIcon className="w-6 h-6 text-green-600" />, label: 'Fake Loan Apps', desc: 'Apps that steal your contacts and data' },
+              { icon: <BuildingLibraryIcon className="w-6 h-6 text-green-600" />, label: 'Banking Scams', desc: 'Phishing and fake bank portals' },
+              { icon: <TicketIcon className="w-6 h-6 text-green-600" />, label: 'Betting Scams', desc: 'Fake betting mirrors and tipsters' },
+              { icon: <ShoppingBagIcon className="w-6 h-6 text-green-600" />, label: 'Fake Online Stores', desc: 'Sites that take your money and vanish' },
+              { icon: <CurrencyDollarIcon className="w-6 h-6 text-green-600" />, label: 'Crypto Fraud', desc: 'Fake exchanges and wallet drainers' },
             ].map((cat) => (
               <div key={cat.label} className="border border-gray-100 rounded-xl p-5 hover:border-green-200 hover:shadow-sm transition-all">
-                <div className="text-2xl mb-2">{cat.icon}</div>
+                <div className="mb-3">{cat.icon}</div>
                 <div className="font-semibold text-sm text-gray-900 mb-1">{cat.label}</div>
                 <div className="text-xs text-gray-400">{cat.desc}</div>
               </div>
@@ -75,17 +83,16 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Recent scam alerts */}
       <section className="py-16 px-4 bg-red-50">
         <div className="max-w-4xl mx-auto">
           <div className="flex items-center justify-between mb-8">
-            <h2 className="text-2xl font-bold text-gray-900">⚠️ Recent Scam Alerts</h2>
-            <a href="/blog" className="text-sm text-green-600 font-semibold hover:underline">View all →</a>
+            <h2 className="text-2xl font-bold text-gray-900">Recent Scam Alerts</h2>
+            <a href="/blog" className="text-sm text-green-600 font-semibold hover:underline">View all</a>
           </div>
           <div className="grid md:grid-cols-3 gap-4">
             {[
               { tag: 'Investment', title: 'PXES Nigeria — Fake Investment Platform Exposed', date: 'May 2026' },
-              { tag: 'Data Harvest', title: 'BunnyBand — Never Pays, Steals Your Data', date: 'May 2026' },
+              { tag: 'Data Harvest', title: 'BunnyBand — Never Pays and Steals Your Data', date: 'May 2026' },
               { tag: 'Ponzi', title: 'VictusLink — Classic Ponzi Scheme Warning', date: 'May 2026' },
             ].map((alert) => (
               <div key={alert.title} className="bg-white rounded-xl p-5 border border-red-100 shadow-sm">
@@ -100,13 +107,12 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* CTA */}
       <section className="py-16 px-4 bg-green-600 text-white text-center">
         <div className="max-w-2xl mx-auto">
-          <h2 className="text-3xl font-extrabold mb-4">Don't Get Scammed Today</h2>
+          <h2 className="text-3xl font-extrabold mb-4">Do Not Get Scammed Today</h2>
           <p className="text-green-100 mb-8">Thousands of Nigerians lose money to fake sites every day. Check before you click.</p>
           <a href="/check" className="inline-block bg-white text-green-700 font-bold px-8 py-4 rounded-xl hover:bg-green-50 transition-colors text-sm">
-            Check a Site Now — It's Free →
+            Check a Site Now. It is Free.
           </a>
         </div>
       </section>

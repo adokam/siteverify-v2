@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import BackButton from '@/components/BackButton'
+import { EnvelopeIcon, ChatBubbleLeftRightIcon } from '@heroicons/react/24/outline'
 
 export default function ContactPage() {
   const [name, setName] = useState('')
@@ -25,58 +26,77 @@ export default function ContactPage() {
       <BackButton />
       <div className="mb-10">
         <h1 className="text-4xl font-extrabold text-gray-900 mb-3">Contact Us</h1>
-        <p className="text-gray-500 leading-relaxed">Have a question, want to report a scam, or just want to say hello? We are here and we will get back to you as soon as we can.</p>
+        <p className="text-gray-500 leading-relaxed">
+          Have a question, want to report a scam, or just want to say hello? We are here and we will get back to you as soon as we can.
+        </p>
       </div>
+
       <div className="grid grid-cols-2 gap-4 mb-8">
         <div className="bg-white rounded-2xl border border-gray-100 p-5 shadow-sm">
-          <div className="text-2xl mb-2">📧</div>
+          <EnvelopeIcon className="w-6 h-6 text-green-600 mb-2" />
           <div className="text-sm font-bold text-gray-900 mb-1">Email Us</div>
-          <a href="mailto:danielameh1027@gmail.com" className="text-xs text-green-600 hover:underline break-all">danielameh1027@gmail.com</a>
+          <a href="mailto:danielameh1027@gmail.com" className="text-xs text-green-600 hover:underline break-all">
+            danielameh1027@gmail.com
+          </a>
         </div>
         <a href={whatsappUrl} target="_blank" rel="noopener noreferrer"
           className="bg-green-500 hover:bg-green-600 transition-colors rounded-2xl border border-green-400 p-5 shadow-sm block">
-          <div className="text-2xl mb-2">💬</div>
+          <ChatBubbleLeftRightIcon className="w-6 h-6 text-white mb-2" />
           <div className="text-sm font-bold text-white mb-1">WhatsApp Us</div>
           <div className="text-xs text-green-100">Click to chat directly</div>
         </a>
       </div>
+
       <div className="bg-white rounded-2xl border border-gray-100 p-6 shadow-sm">
         <h2 className="text-lg font-bold text-gray-900 mb-5">Send a Message</h2>
         {sent ? (
           <div className="bg-green-50 border border-green-200 rounded-xl p-5 text-center">
-            <div className="text-3xl mb-2">✅</div>
+            <div className="w-10 h-10 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-3">
+              <EnvelopeIcon className="w-5 h-5 text-green-600" />
+            </div>
             <div className="font-bold text-green-700 mb-1">Message ready to send</div>
-            <p className="text-sm text-gray-500">Your email app should have opened. If it did not, email us directly at danielameh1027@gmail.com</p>
-            <button onClick={() => { setSent(false); setName(''); setEmail(''); setMessage('') }}
-              className="mt-4 text-sm text-green-600 font-semibold hover:underline">Send another message</button>
+            <p className="text-sm text-gray-500">
+              Your email app should have opened. If it did not, email us directly at danielameh1027@gmail.com
+            </p>
+            <button
+              onClick={() => { setSent(false); setName(''); setEmail(''); setMessage('') }}
+              className="mt-4 text-sm text-green-600 font-semibold hover:underline"
+            >
+              Send another message
+            </button>
           </div>
         ) : (
           <form onSubmit={handleSubmit} className="space-y-4">
             <div>
               <label className="block text-sm font-semibold text-gray-700 mb-1.5">Your Name</label>
-              <input type="text" required value={name} onChange={e => setName(e.target.value)} placeholder="e.g. Chidi Okonkwo"
+              <input type="text" required value={name} onChange={e => setName(e.target.value)}
+                placeholder="e.g. Chidi Okonkwo"
                 className="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-green-500 transition-colors" />
             </div>
             <div>
               <label className="block text-sm font-semibold text-gray-700 mb-1.5">Your Email</label>
-              <input type="email" required value={email} onChange={e => setEmail(e.target.value)} placeholder="e.g. chidi@gmail.com"
+              <input type="email" required value={email} onChange={e => setEmail(e.target.value)}
+                placeholder="e.g. chidi@gmail.com"
                 className="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-green-500 transition-colors" />
             </div>
             <div>
               <label className="block text-sm font-semibold text-gray-700 mb-1.5">Message</label>
-              <textarea required rows={5} value={message} onChange={e => setMessage(e.target.value)} placeholder="Tell us what is on your mind..."
+              <textarea required rows={5} value={message} onChange={e => setMessage(e.target.value)}
+                placeholder="Tell us what is on your mind..."
                 className="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-green-500 transition-colors resize-none" />
             </div>
-            <button type="submit" className="w-full bg-green-600 hover:bg-green-700 text-white font-bold py-3.5 rounded-xl transition-colors text-sm">
-              Send Message →
+            <button type="submit"
+              className="w-full bg-green-600 hover:bg-green-700 text-white font-bold py-3.5 rounded-xl transition-colors text-sm">
+              Send Message
             </button>
             <p className="text-xs text-gray-400 text-center">We usually respond within 24 hours on business days.</p>
           </form>
         )}
       </div>
+
       <div className="mt-6 text-center text-sm text-gray-400">
         <p>SiteVerify is a product of <strong className="text-gray-600">Fix9ja Technologies LTD</strong></p>
-        <p className="mt-1">Registered with the Corporate Affairs Commission · Abuja, Nigeria</p>
+        <p className="mt-1">Registered with the Corporate Affairs Commission. Abuja, Nigeria.</p>
       </div>
     </div>
   )
